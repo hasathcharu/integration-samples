@@ -1,4 +1,4 @@
-import ballerinax/ai;
+import ballerina/ai;
 
 final ai:AzureOpenAiProvider _MathTutorModel = check new (serviceUrl, apiKey, deploymentId, apiVersion);
 final ai:Agent _MathTutorAgent = check new (
