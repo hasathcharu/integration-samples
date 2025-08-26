@@ -1,6 +1,7 @@
-import ballerinax/ai;
+import ballerina/ai;
+import ballerinax/ai.azure;
 
-final ai:AzureOpenAiProvider _MathTutorModel = check new (serviceUrl, apiKey, deploymentId, apiVersion);
+final ai:ModelProvider _MathTutorModel = check new azure:OpenAiModelProvider(serviceUrl, apiKey, deploymentId, apiVersion);
 final ai:Agent _MathTutorAgent = check new (
     systemPrompt = {role: "Math Tutor", instructions: string `You are a math tutor assistant who helps students solve math problems. Provide clear, step-by-step instructions to guide them toward the final answer. Be sure to include the final answer at the end. Use the available tools to perform any necessary calculations.`}, model = _MathTutorModel, tools = [sumTool, subtractTool, multTool, divideTool]
 );
