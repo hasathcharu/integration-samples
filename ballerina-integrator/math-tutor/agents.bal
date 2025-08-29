@@ -7,6 +7,7 @@ final ai:Agent _MathTutorAgent = check new (
 );
 
 # Provide sum of two numbers
+# + return - The sum of num1 and num2
 @ai:AgentTool
 @display {label: "", iconPath: ""}
 isolated function sumTool(int num1, int num2) returns int {
