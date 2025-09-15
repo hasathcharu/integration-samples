@@ -7,5 +7,5 @@ public function main() returns error? {
     string formattedTime = time:utcToString(currentTime);
 
     // Print the timestamp in UTC format
-    io:println("Current timestamp: " + formattedTime + "HELLO");
+    io:println("Current timestamp: " + formattedTime + "Update 2");
 }
