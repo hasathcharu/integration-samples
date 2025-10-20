@@ -1,5 +1,5 @@
 import ballerina/http;
-import ballerinax/ai;
+import ballerina/ai;
 
 listener ai:Listener mathTutorListener = new (listenOn = check http:getDefaultListener());
 
