@@ -6,7 +6,7 @@
 
 <details>
 
-<summary><h1>Salesforce Setup Guide</h1></summary>
+<summary>Salesforce Setup Guide</summary>
 
 1. A Salesforce account with API access
 2. OAuth2 credentials:
