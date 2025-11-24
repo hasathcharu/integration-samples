@@ -1,9 +1,3 @@
-# Salesforce to Google Sheets Integration
-
-## Description
-
-This integration extracts all Opportunity records from Salesforce and creates a spreadsheet in Google Sheets with key opportunity information. Each execution creates a new spreadsheet with a timestamp, providing a historical snapshot of your opportunities over time.
-
 ### What It Does
 
 - Queries all Opportunity records from Salesforce using SOQL
@@ -12,7 +6,7 @@ This integration extracts all Opportunity records from Salesforce and creates a 
 
 <details>
 
-<summary>Salesforce Setup Guide</summary>
+<summary><h1>Salesforce Setup Guide</h1></summary>
 
 1. A Salesforce account with API access
 2. OAuth2 credentials:
