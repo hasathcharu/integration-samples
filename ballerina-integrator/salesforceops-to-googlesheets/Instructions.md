@@ -1,4 +1,4 @@
-### What It Does
+## What It Does
 
 - Queries all Opportunity records from Salesforce using SOQL
 - Creates a new Google Sheets spreadsheet with a timestamped name (e.g., "Opportunities 2025-11-17 14:30")
