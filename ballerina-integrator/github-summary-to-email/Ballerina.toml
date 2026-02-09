@@ -1,0 +1,8 @@
+[package]
+org = "wso2"
+name = "github_summary_to_email"
+version = "0.1.0"
+title = "github-summary-to-email"
+
+[build-options]
+sticky = true
