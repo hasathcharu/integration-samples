@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - jsDeliver
   workflow_dispatch:
     inputs:
       build_path:
@@ -17,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       projects: ${{ steps.set-matrix.outputs.projects }}
+      changed_files: ${{ steps.changed-files.outputs.changed_files }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,6 +32,13 @@ jobs:
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
         run: bash .github/scripts/get-changed-files.sh
+
+      - name: Purge Global Metadata Cache
+        id: purge-global-cache
+        env:
+          CHANGED_FILES: ${{ steps.changed-files.outputs.changed_files }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: bash .github/scripts/purge-global-metadata-cache.sh
 
       - name: Load project config
         id: set-matrix
@@ -83,17 +92,24 @@ jobs:
         working-directory: ${{ matrix.project.path }}
         run: bal build --cloud=docker
 
-      - name: Login to Azure Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ secrets.REGISTRY_URL }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_SECRET }}
+      # - name: Login to Azure Container Registry
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: ${{ secrets.REGISTRY_URL }}
+      #     username: ${{ secrets.REGISTRY_USERNAME }}
+      #     password: ${{ secrets.REGISTRY_SECRET }}
 
-      - name: Tag Docker image
-        working-directory: ${{ matrix.project.path }}
-        run: docker tag ${{ env.REPOSITORY }}:latest ${{ secrets.REGISTRY_URL }}/${{ env.REPOSITORY }}:${{ env.TAG }}
+      # - name: Tag Docker image
+      #   working-directory: ${{ matrix.project.path }}
+      #   run: docker tag ${{ env.REPOSITORY }}:latest ${{ secrets.REGISTRY_URL }}/${{ env.REPOSITORY }}:${{ env.TAG }}
 
-      - name: Push Docker image
-        working-directory: ${{ matrix.project.path }}
-        run: docker push ${{ secrets.REGISTRY_URL }}/${{ env.REPOSITORY }}:${{ env.TAG }}
+      # - name: Push Docker image
+      #   working-directory: ${{ matrix.project.path }}
+      #   run: docker push ${{ secrets.REGISTRY_URL }}/${{ env.REPOSITORY }}:${{ env.TAG }}
+      
+      - name: Purge Project Metadata Cache
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PROJECT_PATH: ${{ matrix.project.path }}
+          CHANGED_FILES: ${{ needs.load-config.outputs.changed_files }}
+        run: bash .github/scripts/purge-project-metadata-cache.sh
