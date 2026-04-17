@@ -328,7 +328,7 @@
       "componentPath": "/micro-integrator/XMLToJSONTransformation",
       "thumbnailPath": "https://mi-connectors.wso2.com/samples/icons/Transformation_Templates.png",
       "tags": ["Integration", "HTTP", "REST"],
-      "imageUrl": "choreoanonymouspullable.azurecr.io/samples/reading-list-rest-service-in-go:1.0.0"
+      "imageUrl": "testanonymouspullable.azurecr.io/samples/reading-list-rest-service-in-go:1.0.0"
     }
   ]
 }

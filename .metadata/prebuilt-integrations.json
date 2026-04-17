@@ -153,7 +153,7 @@
       "componentPath": "/ballerina-integrator/shopify-to-quickbooks-transaction",
       "applications": ["Shopify", "QuickBooks"],
       "tags": ["Event-Driven", "E-Commerce", "Finance"],
-      "imageUrl": "wso2integrations.azurecr.io/shopify_to_quickbooks_transaction:0.2.0",
+      "imageUrl": "wso2integrations.azurecr.io/test test:0.2.0",
       "bidirectional": false
     }
   ]
