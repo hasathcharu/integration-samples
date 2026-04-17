@@ -19,14 +19,13 @@ PURGE_URL="https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@${BRANCH}/${FILE_P
 echo "Purging jsDelivr cache for: ${FILE_PATH}"
 echo "URL: ${PURGE_URL}"
 
-RESPONSE=$(curl -s -w "\n%{http_code}" "${PURGE_URL}")
+RESPONSE=$(curl -s -w "\n%{http_code}" -H "User-Agent: GitHub-Actions-Purge" "${PURGE_URL}")
 HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
 BODY=$(echo "$RESPONSE" | sed '$d')
 
-if [ "$HTTP_CODE" -eq 200 ]; then
-  echo "Cache purged successfully"
-else
-  echo "Failed to purge cache (HTTP ${HTTP_CODE})"
-  echo "$BODY"
+echo "Response (HTTP ${HTTP_CODE}): ${BODY}"
+
+if [ "$HTTP_CODE" -ne 200 ]; then
+  echo "Failed to purge cache"
   exit 1
 fi
