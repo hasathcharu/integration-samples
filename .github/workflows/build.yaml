@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - jsDeliver
+      - jsdelivr
   workflow_dispatch:
     inputs:
       build_path:
