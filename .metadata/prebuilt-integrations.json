@@ -154,7 +154,7 @@
       "applications": ["Shopify", "QuickBooks"],
       "tags": ["Event-Driven", "E-Commerce", "Finance"],
       "imageUrl": "wso2integrations.azurecr.io/shopify_to_quickbooks_transaction:0.2.0",
-      "bidirectional": "yes"
+      "bidirectional": false
     }
   ]
 }
